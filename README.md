@@ -1,5 +1,16 @@
-# This repository is now maintained as JoyPixels/emoji-toolkit.
-You'll find the latest version of our resources at [emoji-toolkit](https://github.com/joypixels/emoji-toolkit). Please see the [UPGRADE README](https://github.com/joypixels/emoji-toolkit/blob/master/UPGRADE.md) for important information on what's changed from this repository. Thank you! 
+# Форк emojione/emojione для UMI.CMS
+
+Форк [emojione/emojione](https://github.com/joypixels/emojione) 4.5 с исправлениями
+совместимости с PHP 8 для UMI.CMS. Оригинальный репозиторий заархивирован.
+
+Подключение через composer:
+
+    "repositories": [{"type": "vcs", "url": "https://github.com/1C-UMI/emojione"}],
+    "require": {"emojione/emojione": "^4.5.1"}
+
+Ниже — оригинальный README.
+
+---
 
 # ![EmojiOne Logo](https://www.emojione.com/images/vectors/emojione-typeface.svg)
 

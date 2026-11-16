@@ -30,7 +30,7 @@ class Client implements ClientInterface
 
     protected $ruleset = null;
 
-    public function __construct(RulesetInterface $ruleset = null)
+    public function __construct(?RulesetInterface $ruleset = null)
     {
         if ( ! is_null($ruleset) )
         {
@@ -85,6 +85,8 @@ class Client implements ClientInterface
      */
     public function shortnameToUnicode($string)
     {
+        $string = (string) $string;
+
         if ($this->shortcodes)
         {
             $string = preg_replace_callback('/'.$this->ignoredRegexp.'|('.$this->shortcodeRegexp.')/Si', array($this, 'shortnameToUnicodeCallback'), $string);
@@ -112,7 +114,7 @@ class Client implements ClientInterface
      */
     public function shortnameToAscii($string)
     {
-        $string = preg_replace_callback('/'.$this->ignoredRegexp.'|('.$this->shortcodeRegexp.')/Si', array($this, 'shortnameToAsciiCallback'), $string);
+        $string = preg_replace_callback('/'.$this->ignoredRegexp.'|('.$this->shortcodeRegexp.')/Si', array($this, 'shortnameToAsciiCallback'), (string) $string);
 
         return $string;
     }
@@ -131,7 +133,7 @@ class Client implements ClientInterface
         $asciiRegexp = $ruleset->getAsciiRegexp();
         $asciiRX = ($this->riskyMatchAscii) ? '|(()'.$asciiRegexp.'())' : '|((\\s|^)'.$asciiRegexp.'(?=\\s|$|[!,.?]))';
 
-        return preg_replace_callback('/'.$this->ignoredRegexp.$asciiRX.'/S', array($this, 'asciiToShortnameCallback'), $string);
+        return preg_replace_callback('/'.$this->ignoredRegexp.$asciiRX.'/S', array($this, 'asciiToShortnameCallback'), (string) $string);
     }
 
     /**
@@ -142,6 +144,8 @@ class Client implements ClientInterface
      */
     public function shortnameToImage($string)
     {
+        $string = (string) $string;
+
         if ($this->shortcodes)
         {
             $string = preg_replace_callback('/'.$this->ignoredRegexp.'|('.$this->shortcodeRegexp.')/Si', array($this, 'shortnameToImageCallback'), $string);
@@ -167,7 +171,7 @@ class Client implements ClientInterface
      */
     public function toShort($string)
     {
-        return preg_replace_callback('/'.$this->ignoredRegexp.'|'.$this->unicodeRegexp.'/u', array($this, 'toShortCallback'), $string);
+        return preg_replace_callback('/'.$this->ignoredRegexp.'|'.$this->unicodeRegexp.'/u', array($this, 'toShortCallback'), (string) $string);
     }
 
     /**
